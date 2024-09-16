@@ -1,0 +1,1 @@
+wasm-pack build --target bundler  --release --out-dir ../src/wasm-dist

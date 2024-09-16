@@ -1,0 +1,1 @@
+echo -e '[build]\nrustflags = ["--cfg=web_sys_unstable_apis"]' >> $HOME/.cargo/config.toml
