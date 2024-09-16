@@ -8,7 +8,9 @@ use std::task::Poll;
 use wasm_bindgen::JsCast;
 use wasm_bindgen_futures::spawn_local;
 use web_sys::HtmlCanvasElement;
-use wgpu::util::DeviceExt;
+#[allow(unused_imports)]
+use wgpu::{util::DeviceExt,Instance};
+use wasm_bindgen::prelude::wasm_bindgen;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -100,7 +102,7 @@ async fn run() {
     let width = canvas.width();
     let height = canvas.height();
 
-    let instance = wgpu::Instance::new(wgpu::Backends::all());
+    let instance =Instance::new(wgpu::Backends::all());
     let surface = instance.create_surface_from_canvas(&canvas);
     let adapter = instance
         .request_adapter(&wgpu::RequestAdapterOptions {
@@ -231,7 +233,8 @@ async fn run() {
     }
 }
 
-fn main() {
+#[wasm_bindgen(start)]
+pub fn main() {
     wasm_logger::init(wasm_logger::Config::default().module_prefix("zenn_wgpu_example_browser"));
     spawn_local(run());
 }

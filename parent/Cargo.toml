@@ -3,6 +3,7 @@ name = "zenn-wgpu-example-browser"
 version = "0.1.0"
 edition = "2021"
 
+
 [dependencies]
 log = "0.4.17"
 gloo = "0.8.0"
