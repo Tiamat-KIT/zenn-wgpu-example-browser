@@ -1,38 +1,50 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useEffect } from "react";
-import Triangle from "~/utils/Triangle";
+import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "研究用ページ" },
+    { name: "description", content: "WebAssemblyの研究のためのページ" },
   ];
 };
 
 export default function Index() {
-  const run = async() => {
-  const { WasmFuncColorfulTriangle, WasmFuncSimpleTriangle } = await import("~/utils/WasmFuncs")
-    const start = performance.now()
-    Triangle(document.getElementById("normal") as HTMLCanvasElement)
-    console.info(performance.now() - start + "ms","normal draw")
-    
-    const wasm_start = performance.now()
-    WasmFuncSimpleTriangle(document.getElementById("canvas") as HTMLCanvasElement)
-    console.info(performance.now() - wasm_start + "ms","wasm single draw")
-
-    const wasm_color_start = performance.now()
-    WasmFuncColorfulTriangle(document.getElementById("colorful") as HTMLCanvasElement)
-    console.info(performance.now() - wasm_color_start + "ms","wasm colorful draw")
-  }
   
-  useEffect(() => {
-    run()
-  },[])
   return (
-    <div>
-        <canvas id="normal" />
-        <canvas id="canvas" />
-        <canvas id="colorful" />
-    </div>
+    <>
+      <h1 className="text-center">WebAssemblyの研究のためのページ</h1>
+      
+      <h2>通常環境</h2>
+      <span className="w-96 flex  justify-center border rounded-lg [&>section]:m-3 [&>section]:p-3">
+        <section>
+          <h3>
+            一色の三角形
+          </h3>
+          <Link to="/normal">見る</Link>
+        </section>
+        <section>
+          <h3>
+            グラデーションの三角形
+          </h3>
+          <Link to="/colorful">見る</Link>
+        </section>
+      </span>
+      
+      <h2>Worker環境 -実装前-</h2>
+      <span className="w-96 flex justify-center  border rounded-lg [&>section]:m-3 [&>section]:p-3">
+        <section>
+          <h3>
+            一色の三角形
+          </h3>
+          <Link to="/worker/normal">見る</Link>
+        </section>
+        <section>
+          <h3>
+            グラデーションの三角形
+          </h3>
+          <Link to="/worker/colorful">見る</Link>
+        </section>
+      </span>
+    </>
   );
 }

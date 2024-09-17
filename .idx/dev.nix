@@ -7,6 +7,7 @@
     pkgs.cargo
     pkgs.rustup
     pkgs.gcc
+    pkgs.bun
   ];
   idx.extensions = [
     

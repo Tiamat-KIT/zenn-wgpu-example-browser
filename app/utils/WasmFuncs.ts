@@ -111,8 +111,8 @@ async function WasmFuncWorkerSimpleTriangle(canvas: OffscreenCanvas) {
         "auto",
         shader,
         format,
-        "vs",
-        "fs"
+        "vs_main",
+        "fs_main"
     )
 
     const command_encoder = wasm.create_command_encoder(device)

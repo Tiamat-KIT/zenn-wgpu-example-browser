@@ -1,3 +1,6 @@
+import VertexShader from "./vertex.wgsl?raw"
+import FragmentShader from "./fragment.wgsl?raw"
+
 export default async function Triangle(canvas: HTMLCanvasElement) {
     const adapter = await navigator.gpu.requestAdapter()
     if(!adapter) {
@@ -25,23 +28,7 @@ export default async function Triangle(canvas: HTMLCanvasElement) {
 
     const module = device.createShaderModule({
         label: "JavaScript Triangle Shader Module",
-        code: `
-        @vertex fn vs(
-            @builtin(vertex_index) vertexIndex : u32
-        ) -> @builtin(position) vec4f {
-            let pos = array(
-            vec2f( 0.0,  0.5),  // top center
-            vec2f(-0.5, -0.5),  // bottom left
-            vec2f( 0.5, -0.5)   // bottom right
-            );
-
-            return vec4f(pos[vertexIndex], 0.0, 1.0);
-        }
-
-        @fragment fn fs() -> @location(0) vec4f {
-            return vec4f(1.0, 0.0, 0.0, 1.0);
-        }
-        `
+        code: `${VertexShader}\n${FragmentShader}`
     })
 
     const pipeline = device.createRenderPipeline({
@@ -49,11 +36,11 @@ export default async function Triangle(canvas: HTMLCanvasElement) {
         layout: "auto",
         vertex: {
             module,
-            entryPoint: "vs",
+            entryPoint: "vs_main",
         },
         fragment: {
             module,
-            entryPoint: "fs",
+            entryPoint: "fs_main",
             targets: [{
                 format: presentationFormat
             }]

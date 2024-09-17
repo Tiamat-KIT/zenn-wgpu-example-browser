@@ -10,3 +10,23 @@ body {
     color-scheme: dark;
   }
 }
+
+@layer base {
+  h1 {
+    @apply text-xl
+  }
+
+  h2 {
+    @apply text-lg
+  }
+
+  h3 {
+    @apply text-lg
+  }
+  ul {
+    @apply list-disc
+  }
+  li {
+    @apply text-blue-400 underline hover:text-purple-400 
+  }
+}
