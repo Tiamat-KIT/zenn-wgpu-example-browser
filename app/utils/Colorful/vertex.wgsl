@@ -1,9 +1,5 @@
-struct OurVertexShaderOutput {
-    @builtin(position) position: vec4f,
-    @location(0) color: vec4f 
-};
-
-@vertex fn vs_main(
+@vertex
+fn vs_main(
     @builtin(vertex_index) vertexIndex: u32
 ) -> OurVertexShaderOutput {
     let pos = array<vec2f,3> (
@@ -16,7 +12,7 @@ struct OurVertexShaderOutput {
         vec4f(0,1,0,1),
         vec4f(0,0,1,1)
     );
-    let vsOutput: OurVertexShaderOutput;
+    var vsOutput: OurVertexShaderOutput;
     vsOutput.position = vec4f(pos[vertexIndex], 0.0, 1.0);
     vsOutput.color = color[vertexIndex];
     return vsOutput;

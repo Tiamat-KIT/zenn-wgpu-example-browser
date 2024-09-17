@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Triangle from "~/utils/SingleColor/Triangle";
 
 export const meta: MetaFunction = () => {
@@ -10,28 +10,44 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const [normal,setNormal] = useState<number | null>(null)
+  const [wasm_normal,setWasmNormal] = useState<number | null>(null)
   const run = async() => {
   const {  WasmFuncSimpleTriangle } = await import("~/utils/WasmFuncs")
     const start = performance.now()
     Triangle(document.getElementById("normal") as HTMLCanvasElement)
-    console.info(performance.now() - start + "ms","normal draw")
+    setNormal(performance.now() - start )
     
     const wasm_start = performance.now()
     WasmFuncSimpleTriangle(document.getElementById("canvas") as HTMLCanvasElement)
-    console.info(performance.now() - wasm_start + "ms","wasm single draw")
-
-    /* const wasm_color_start = performance.now()
-    WasmFuncColorfulTriangle(document.getElementById("colorful") as HTMLCanvasElement)
-    console.info(performance.now() - wasm_color_start + "ms","wasm colorful draw") */
+    setWasmNormal(performance.now() - wasm_start)
   }
   
   useEffect(() => {
     run()
   },[])
   return (
-    <div>
-        <canvas id="normal" />
-        <canvas id="canvas" />
-    </div>
+    <>
+      <div className="flex">
+        <section>
+          <h3>
+            JavaScript Only
+          </h3>
+          <canvas id="normal" />
+          <p>
+            {normal !== null && `rendering time ${normal}ms`}
+          </p>
+        </section>
+        <section>
+          <h3>
+            JavaScript and Wasm Support Func
+          </h3>
+          <canvas id="canvas" />
+          <p>
+            {wasm_normal !== null && `rendering time ${wasm_normal}ms`}
+          </p>
+        </section>
+      </div>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import StructShader from "./struct.wgsl?raw"
 import VertexShader from "./vertex.wgsl?raw"
 import FragmentShader from "./fragment.wgsl?raw"
 
@@ -28,7 +29,7 @@ export default async function Triangle(canvas: HTMLCanvasElement) {
 
     const module = device.createShaderModule({
         label: "JavaScript Triangle Shader Module",
-        code: `${VertexShader}\n${FragmentShader}`
+        code: `${StructShader}\n${VertexShader}\n${FragmentShader}`
     })
 
     const pipeline = device.createRenderPipeline({
