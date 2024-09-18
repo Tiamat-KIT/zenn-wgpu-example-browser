@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
 import Triangle from "~/utils/SingleColor/Triangle";
+import CustomSection from "~/components/CustomSection"
 
 export const meta: MetaFunction = () => {
   return [
@@ -29,24 +30,8 @@ export default function Index() {
   return (
     <>
       <div className="flex">
-        <section>
-          <h3>
-            JavaScript Only
-          </h3>
-          <canvas id="normal" />
-          <p>
-            {normal !== null && `rendering time ${normal}ms`}
-          </p>
-        </section>
-        <section>
-          <h3>
-            JavaScript and Wasm Support Func
-          </h3>
-          <canvas id="canvas" />
-          <p>
-            {wasm_normal !== null && `rendering time ${wasm_normal}ms`}
-          </p>
-        </section>
+        <CustomSection title="JavaScript Only" canvas_id="normal" time={normal}/>
+        <CustomSection title="JavaScript and Wasm Support Func" canvas_id="canvas" time={wasm_normal}/>
       </div>
     </>
   );

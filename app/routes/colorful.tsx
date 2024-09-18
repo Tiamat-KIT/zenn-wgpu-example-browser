@@ -1,7 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
 import Triangle from "~/utils/Colorful/Triangle";
-
+import CustomSection from "~/components/CustomSection"
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
@@ -29,24 +29,8 @@ export default function Index() {
   return (
     <>
       <div className="flex">
-        <section>
-          <h3>
-            JavaScript Only
-          </h3>
-          <canvas id="colorful" />
-          <p>
-            {color !== null && `rendering time ${color}ms`}
-          </p>
-        </section>
-        <section>
-          <h3>
-            JavaScript and Wasm Support Func
-          </h3>
-          <canvas id="wasm-colorful" />
-          <p>
-            {wasm_color !== null && `rendering time ${wasm_color}ms`}
-          </p>
-        </section>
+        <CustomSection title="JavaScript Only" canvas_id="colorful" time={color}/>
+        <CustomSection title="JavaScript and Wasm Support Func" canvas_id="wasm-colorful" time={wasm_color}/>
       </div>
     </>
   );
