@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
 import Triangle from "~/utils/SingleColor/Triangle";
 import CustomSection from "~/components/CustomSection"
+import NormalOrWasmTime from "~/utils/NormalOrWasmTime";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,6 +10,7 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+
 
 export default function Index() {
   const [normal,setNormal] = useState<number | null>(null)
@@ -33,6 +35,7 @@ export default function Index() {
         <CustomSection title="JavaScript Only" canvas_id="normal" time={normal}/>
         <CustomSection title="JavaScript and Wasm Support Func" canvas_id="canvas" time={wasm_normal}/>
       </div>
+      {wasm_normal !== 0 ? <p>{NormalOrWasmTime(normal,wasm_normal)}</p> : <p>Wasm側の数値が0になっているため計測ができませんでした</p>}
     </>
   );
 }
