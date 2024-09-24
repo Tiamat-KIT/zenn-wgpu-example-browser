@@ -51,7 +51,7 @@ export default async function Triangle(canvas: HTMLCanvasElement) {
         label: "JavaScript Triangle Render Pass Descriptor",
         colorAttachments: [{
             view: context.getCurrentTexture().createView(),
-            clearValue: [0.3, 0.3, 0.3, 1.0],
+            // clearValue: [0.3, 0.3, 0.3, 1.0],
             loadOp: "clear",
             storeOp: "store",
         },] as Iterable<GPURenderPassColorAttachment>,

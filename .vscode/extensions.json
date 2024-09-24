@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "polymeilex.wgsl",
-        "wgsl-analyzer.wgsl-analyzer"
+        "wgsl-analyzer.wgsl-analyzer",
+        "ms-playwright.playwright"
     ]
 }
