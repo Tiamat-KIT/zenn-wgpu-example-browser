@@ -6,6 +6,12 @@ import topLevelAwait from "vite-plugin-top-level-await";
 import { comlink } from "vite-plugin-comlink";
 
 export default defineConfig({
+  server: {
+    watch: {
+      usePolling: true,
+      interval: 1000
+    }
+  },
   plugins: [
     remix({
       future: {

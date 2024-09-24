@@ -10,7 +10,12 @@ export default function CustomSection({title,canvas_id,time}:CustomSectionProps)
         <section className="flex justify-center flex-col mt-8 p-3 border rounded-lg w-96">
             <h3 className="font-sans font-bold text-xl text-center">{title}</h3>
             <canvas  id={canvas_id} />
-            {time !== null && <p>Rendering Time {time}ms</p>}
+            {time !== null && (
+                <span className="flex flex-row">
+                    <p>Rendering Time</p>
+                    <p id={`time-${canvas_id}`}>{time}ms</p>
+                </span>
+            )}
         </section>
         
     )
