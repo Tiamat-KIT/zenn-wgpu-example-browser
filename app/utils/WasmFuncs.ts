@@ -1,5 +1,4 @@
-const wasm = await import("~/wasm-dist/wgpu_sys")
-
+import wasm from "~/wasm-dist/wgpu_sys"
 async function WasmFuncSimpleTriangle(canvas: HTMLCanvasElement) {
     const adapter = await navigator.gpu.requestAdapter()
     if(!adapter) {
