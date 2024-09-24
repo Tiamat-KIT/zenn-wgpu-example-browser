@@ -1,4 +1,4 @@
-import * as wasm from "../wasm-dist/wgpu_sys"
+import {gpu_device_create_shader_module,gpu_device_create_render_pipeline, create_command_encoder, create_render_pass_encoder} from "../wasm-dist/wgpu_sys"
 
 async function WasmFuncSimpleTriangle(canvas: HTMLCanvasElement) {
     const adapter = await navigator.gpu.requestAdapter()
@@ -19,7 +19,7 @@ async function WasmFuncSimpleTriangle(canvas: HTMLCanvasElement) {
         format
     })
 
-    const shader = wasm.gpu_device_create_shader_module(
+    const shader = gpu_device_create_shader_module(
         device,
         "created wasm_module's shader module",
         `
@@ -40,7 +40,7 @@ async function WasmFuncSimpleTriangle(canvas: HTMLCanvasElement) {
         }
     `
     )
-    const render_pipeline = wasm.gpu_device_create_render_pipeline(
+    const render_pipeline = gpu_device_create_render_pipeline(
         device,
         "created wasm_module's shader module",
         "auto",
@@ -50,9 +50,9 @@ async function WasmFuncSimpleTriangle(canvas: HTMLCanvasElement) {
         "fs"
     )
 
-    const command_encoder = wasm.create_command_encoder(device)
+    const command_encoder = create_command_encoder(device)
 
-    const render_pass_encoder = wasm.create_render_pass_encoder(
+    const render_pass_encoder = create_render_pass_encoder(
         context,
         "created wasm_module's render pass",
         command_encoder
@@ -84,7 +84,7 @@ async function WasmFuncWorkerSimpleTriangle(canvas: OffscreenCanvas) {
         format
     })
 
-    const shader = wasm.gpu_device_create_shader_module(
+    const shader = gpu_device_create_shader_module(
         device,
         "created wasm_module's shader module",
         `
@@ -105,7 +105,7 @@ async function WasmFuncWorkerSimpleTriangle(canvas: OffscreenCanvas) {
         }
     `
     )
-    const render_pipeline = wasm.gpu_device_create_render_pipeline(
+    const render_pipeline = gpu_device_create_render_pipeline(
         device,
         "created wasm_module's shader module",
         "auto",
@@ -115,9 +115,9 @@ async function WasmFuncWorkerSimpleTriangle(canvas: OffscreenCanvas) {
         "fs_main"
     )
 
-    const command_encoder = wasm.create_command_encoder(device)
+    const command_encoder = create_command_encoder(device)
 
-    const render_pass_encoder = wasm.create_render_pass_encoder(
+    const render_pass_encoder = create_render_pass_encoder(
         context,
         "created wasm_module's render pass",
         command_encoder
@@ -149,7 +149,7 @@ async function WasmFuncColorfulTriangle(canvas: HTMLCanvasElement) {
         format
     })
 
-    const shader = wasm.gpu_device_create_shader_module(
+    const shader = gpu_device_create_shader_module(
         device,
         "created wasm_module's shader module",`
             struct OurVertexShaderOutput {
@@ -183,7 +183,7 @@ async function WasmFuncColorfulTriangle(canvas: HTMLCanvasElement) {
             }
         `
     )
-    const render_pipeline = wasm.gpu_device_create_render_pipeline(
+    const render_pipeline = gpu_device_create_render_pipeline(
         device,
         "created wasm_module's shader module",
         "auto",
@@ -193,9 +193,9 @@ async function WasmFuncColorfulTriangle(canvas: HTMLCanvasElement) {
         "fs"
     )
 
-    const command_encoder = wasm.create_command_encoder(device)
+    const command_encoder = create_command_encoder(device)
 
-    const render_pass_encoder = wasm.create_render_pass_encoder(
+    const render_pass_encoder = create_render_pass_encoder(
         context,
         "created wasm_module's render pass",
         command_encoder
@@ -227,7 +227,7 @@ async function WasmFuncWorkerColorfulTriangle(canvas: OffscreenCanvas) {
         format
     })
 
-    const shader = wasm.gpu_device_create_shader_module(
+    const shader = gpu_device_create_shader_module(
         device,
         "created wasm_module's shader module",`
             struct OurVertexShaderOutput {
@@ -261,7 +261,7 @@ async function WasmFuncWorkerColorfulTriangle(canvas: OffscreenCanvas) {
             }
         `
     )
-    const render_pipeline = wasm.gpu_device_create_render_pipeline(
+    const render_pipeline = gpu_device_create_render_pipeline(
         device,
         "created wasm_module's shader module",
         "auto",
@@ -271,9 +271,9 @@ async function WasmFuncWorkerColorfulTriangle(canvas: OffscreenCanvas) {
         "fs"
     )
 
-    const command_encoder = wasm.create_command_encoder(device)
+    const command_encoder = create_command_encoder(device)
 
-    const render_pass_encoder = wasm.create_render_pass_encoder(
+    const render_pass_encoder = create_render_pass_encoder(
         context,
         "created wasm_module's render pass",
         command_encoder
