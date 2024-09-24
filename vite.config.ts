@@ -4,6 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import wasm from "vite-plugin-wasm";
 import topLevelAwait from "vite-plugin-top-level-await";
 import { comlink } from "vite-plugin-comlink";
+import path from "path";
 
 export default defineConfig({
   server: {
@@ -27,5 +28,10 @@ export default defineConfig({
   ],
   worker:{
     plugins: () => [comlink()]
+  },
+  resolve: {
+    alias: {
+      "~":path.join(__dirname,"./app")
+    }
   }
 });
