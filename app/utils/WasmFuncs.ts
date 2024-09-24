@@ -1,9 +1,4 @@
-import {
-    gpu_device_create_shader_module,
-    gpu_device_create_render_pipeline, 
-    create_command_encoder, 
-    create_render_pass_encoder
-} from "../wasm-dist/wgpu_sys"
+import {gpu_device_create_shader_module,gpu_device_create_render_pipeline, create_command_encoder, create_render_pass_encoder} from "../wasm-dist/wgpu_sys"
 
 async function WasmFuncSimpleTriangle(canvas: HTMLCanvasElement) {
     const adapter = await navigator.gpu.requestAdapter()
